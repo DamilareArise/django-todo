@@ -18,13 +18,17 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from django.views.generic import TemplateView
-from todoManager.views import addTodo
+from todoManager.views import addTodo, home, editTodo, deleteTodo, handleComplete
 
 urlpatterns = [
     path("admin/", admin.site.urls),
-    path("", TemplateView.as_view(template_name = "index.html"), name = 'home'),
-    path("get-todo-page/", TemplateView.as_view(template_name = "addTodoPAge.html"), name = 'get-todo-page'),
-    path("add-todo", addTodo, name = 'add-todo'),
+    # path("", TemplateView.as_view(template_name = "index.html"), name = 'home'),
+    # path("get-todo-page/", TemplateView.as_view(template_name = "addTodopage.html"), name = 'get-todo-page'),
+    path("add-todo/", addTodo, name = 'add-todo'),
+    path ("", home, name = 'home'),
+    path("edit-todo/<int:todo_id>/", editTodo, name = 'edit-todo'),
+    path("delete-todo/<int:todo_id>/", deleteTodo, name = 'delete-todo'),
+    path('handle-complete/<int:todo_id>/', handleComplete, name='handle-complete')
 ]
 
 
@@ -42,7 +46,7 @@ what makes up a url is
 # forms -> , 
 # template, -> template 
 
-def add():
-    print("Adding a new item")
+# def add():
+#     print("Adding a new item")
     
-add()
+# add()

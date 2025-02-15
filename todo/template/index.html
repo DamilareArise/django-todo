@@ -4,8 +4,79 @@
         
     
     {% block content %}
+    <div class="container">
 
-        <h1>Hello, welcome to Django class</h1>
+        <h1 class="h3 mt-3">Hello, welcome to Django class</h1>
+        
+        <table class="table my-4">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Title</th>
+                <th scope="col">Description</th>
+                <th scope="col">Date</th>
+                <th scope="col">Completed</th>
+                <th scope="col">Edit</th>
+                <th scope="col">Delete</th>
+              </tr>
+            </thead>
+            <tbody>
+                {% for todo in todos %}
+
+                <tr 
+                
+                {% if todo.completed %}
+                    class="opacity-50"    
+                {% endif %}
+                    
+                >
+                    <th scope="row">{{ forloop.counter }}</th>
+                    <td>{{todo.title}}</td>
+                    <td>{{todo.description}}</td>
+                    <td>{{todo.created_at}}</td>
+                    <td>
+                        
+                        {% if todo.completed %}
+                            <a href="{% url 'handle-complete' todo.id %}" class="btn btn-success">Completed</a>
+                        {% else %}
+                            <a href="{% url 'handle-complete' todo.id %}" class="btn btn-warning">Pending</a>
+                        {% endif %}
+                            
+                    </td>
+                    <td><a href="{% url 'edit-todo' todo.id %}" class="btn btn-primary" >Edit</a></td>
+                    <td><a href="" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal_{{todo.id}}">Delete</a></td>
+
+
+                    <!-- Button trigger modal -->
+                    
+                    <!-- Modal -->
+                    <div class="modal fade" id="exampleModal_{{todo.id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                            <h1 class="modal-title fs-5" id="exampleModalLabel">Delete {{todo.title}}</h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <p>
+                                    Are you sure you want to delete {{todo.title}}?
+                                </p>
+                            </div>
+                            <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
+                            <a href="{% url 'delete-todo' todo.id %}" class="btn btn-primary">Yes</a>
+                            </div>
+                        </div>
+                        </div>
+                    </div>                    
+
+                </tr>
+                {% endfor %}
+            </tbody>
+
+        </table>
+        
+    </div>       
     
     {% endblock content %}
         
