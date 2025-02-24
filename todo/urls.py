@@ -16,9 +16,11 @@ Including another URLconf
 """
 
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
 from django.views.generic import TemplateView
 from todoManager.views import addTodo, home, editTodo, deleteTodo, handleComplete
+from django.contrib.staticfiles.urls import staticfiles_urlpatterns, static
+from . import settings
 
 urlpatterns = [
     path("admin/", admin.site.urls),
@@ -28,9 +30,12 @@ urlpatterns = [
     path ("", home, name = 'home'),
     path("edit-todo/<int:todo_id>/", editTodo, name = 'edit-todo'),
     path("delete-todo/<int:todo_id>/", deleteTodo, name = 'delete-todo'),
-    path('handle-complete/<int:todo_id>/', handleComplete, name='handle-complete')
+    path('handle-complete/<int:todo_id>/', handleComplete, name='handle-complete'),
+    path("product/", include("productApp.urls"))
 ]
 
+urlpatterns += staticfiles_urlpatterns()
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 
 # model, (ORM -> object relational mapping) 

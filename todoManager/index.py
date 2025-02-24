@@ -58,6 +58,22 @@ CREATE TABLE user_table(
     date_created DATETIME DEFAULT CURRENT_TIMESTAMP
 )
 
+CREATE TABLE product_table( id INT AUTO_INCREMENT PRIMARY KEY, product_name VARCHAR(50) UNIQUE, description TEXT, price FLOAT, quantity INT, image VARCHAR(50) created_by INT, FOREIGN KEY (created_by) REFERENCES user_table(user_id) ON DELETE CASCADE );
 
+
+DROP TABLE product_table;
+
+ALTER TABLE product_table2 RENAME product_table;
+ALTER TABLE product_table CHANGE product_name title VARCHAR(50);
+ALTER TABLE product_table ADD created_at DATETIME DEFAULT CURRENT_TIMESTAMP;
+ALTER TABLE product_table DROP COLUMN created_at;
+
+"""
+
+# 2. DATA MANIPULATION LANGUAGE (DML):
+# e.g INSERT, UPDATE, DELETE
+"""
+INSERT INTO user_table(fullname, email, password) VALUES('Aolat', 'aolat@gmail.com', 'password');
+INSERT INTO product_table(title, description, quantity, price, user_id) VALUES('product 2', 'product 2 description', 23, 2333, 2);
 
 """
