@@ -1,0 +1,20 @@
+{% extends 'common.html' %}
+    {% block title %} Login {% endblock title %}
+    {% load bootstrap4 %}
+    {% block content %}
+        <div class="container col-md-4 p-3 my-5 shadow-sm">
+            <h2 class="text-center">Login</h2>
+            <form method="POST">
+                {% csrf_token %}
+                {% bootstrap_form form %}
+                 <!-- {{form}} -->
+                <button type="submit" class="btn btn-primary w-100">Login</button>
+                <div>
+                    <a href="{% url 'password_reset' %}" class="text-black">Forgot password?</a>
+
+                </div>
+            </form>
+        </div>
+
+
+    {% endblock content %}

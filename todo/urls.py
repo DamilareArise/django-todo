@@ -31,7 +31,8 @@ urlpatterns = [
     path("edit-todo/<int:todo_id>/", editTodo, name = 'edit-todo'),
     path("delete-todo/<int:todo_id>/", deleteTodo, name = 'delete-todo'),
     path('handle-complete/<int:todo_id>/', handleComplete, name='handle-complete'),
-    path("product/", include("productApp.urls"))
+    path("product/", include("productApp.urls")),
+    path("accounts/", include("django.contrib.auth.urls"))
 ]
 
 urlpatterns += staticfiles_urlpatterns()
