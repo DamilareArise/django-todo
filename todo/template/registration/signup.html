@@ -1,0 +1,20 @@
+{% extends 'common.html' %}
+    {% block title %} Signup {% endblock title %}
+    {% load bootstrap4 %}
+    {% block content %}
+        <div class="container col-md-4 p-3 my-5 shadow-sm">
+            <h2 class="text-center">Signup</h2>
+            <form method="POST">
+                {% csrf_token %}
+                {% bootstrap_form form %}
+                 <!-- {{form}} -->
+                <button type="submit" class="btn btn-primary w-100">Signup</button>
+                <div>
+                    <a href="{% url 'login' %}" class="text-black">Already have an account?</a>
+
+                </div>
+            </form>
+        </div>
+
+
+    {% endblock content %}

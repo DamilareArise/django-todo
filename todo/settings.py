@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "todoManager",
     "productApp",
+    "userApp",
     "bootstrap4"
 ]
 
