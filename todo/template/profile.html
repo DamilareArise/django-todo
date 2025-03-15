@@ -1,0 +1,27 @@
+{% extends 'common.html' %}
+    
+    {% block title %} Home {% endblock title %}
+    {% load static %}
+    
+    {% block content %}
+
+    <div class="container col-md-5 p-3 shadow-sm mt-3">
+        <h3 class="text-center">Profile Page</h3>
+        
+        {% if {{profileInfo.profile_picture}} %}
+            <img src="{{profileInfo.profile_picture.url}}" alt="" height="50">
+        {% else %}
+        <img src="" alt="No Image" height="50">
+            
+        {% endif %}
+        
+        <p><b>Name</b>: {{userInfo.first_name}} {{userInfo.last_name}} </p>
+        <p><b>Email</b>: {{userInfo.email}} </p>
+        <p><b>Gender</b>: {{profileInfo.gender}} </p>
+        <p><b>Address</b>: {{profileInfo.address}} </p>
+        <div class="text-center">
+            <button class="btn btn-primary">Edit</button>
+        </div>
+    </div>
+
+    {% endblock content %}
